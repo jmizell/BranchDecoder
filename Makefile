@@ -6,6 +6,7 @@ all: ragel test
 ragel:
 	for f in $$(find . -type f -regex '.*\.rl'); do \
 		ragel -s -Z -G1 -o "$$(echo $$f | sed 's/\.rl/.go/g')" $$f; \
+		go fmt "$$(echo $$f | sed 's/\.rl/.go/g')"; \
 	done
 
 test:

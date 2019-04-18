@@ -2,7 +2,7 @@ package html
 
 func (d *decoder) Detect(data []byte) bool {
 
-	%% machine detect_url;
+	%% machine detect_html;
 	%% write data;
 
 	cs, p, pe, eof := 0, 0, len(data), len(data)

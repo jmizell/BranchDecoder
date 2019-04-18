@@ -47,7 +47,6 @@ func (e *EncodingTree) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-
 func (e *EncodingTree) String() string {
 
 	d, _ := json.MarshalIndent(e, "", "  ")

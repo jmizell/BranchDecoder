@@ -1,14 +1,16 @@
 package decoder
 
 import (
+	"github.com/jmizell/BranchDecoder/decoder/base64"
 	"github.com/jmizell/BranchDecoder/decoder/encodings"
 	"github.com/jmizell/BranchDecoder/decoder/html"
 	"github.com/jmizell/BranchDecoder/decoder/url"
 )
 
 var decoders = map[encodings.Encoding]Decoder{
-	encodings.URL: url.Decoder,
-	encodings.HTML: html.Decoder,
+	encodings.URL:    url.Decoder,
+	encodings.HTML:   html.Decoder,
+	encodings.BASE64: base64.Decoder,
 }
 
 // BranchDecoder is a recursive, broadly searching, string encoding detection,
@@ -27,11 +29,11 @@ type BranchDecoder struct {
 
 	// MaxDepth is the maximum recursion depth
 	// that BranchDecoder will search for encodings
-	MaxDepth                   int
+	MaxDepth int
 
 	// Workers is the number of decoding workers
 	// to launch when Decode is called
-	Workers                    int
+	Workers int
 
 	// PreserveIntermediateValues enables storing
 	// intermediate decoded values
@@ -42,7 +44,7 @@ type BranchDecoder struct {
 	// is used. If you want to limit the number of decoders
 	// that BranchDecoder uses, you can do that by setting
 	// this value.
-	Encodings                  map[encodings.Encoding]Decoder
+	Encodings map[encodings.Encoding]Decoder
 }
 
 // NewBranchDecoder returns a new BranchDecoder with default values

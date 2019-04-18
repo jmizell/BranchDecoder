@@ -12,6 +12,7 @@ const (
 	None
 	URL
 	HTML
+	BASE64
 )
 
 func (e *Encoding) Parse(encoding string) {
@@ -21,6 +22,8 @@ func (e *Encoding) Parse(encoding string) {
 		*e = URL
 	case "html":
 		*e = HTML
+	case "base64":
+		*e = BASE64
 	case "none":
 		*e = None
 	default:
@@ -35,6 +38,8 @@ func (e Encoding) String() string {
 		return "URL"
 	case HTML:
 		return "HTML"
+	case BASE64:
+		return "BASE64"
 	case None:
 		return "None"
 	default:

@@ -10,9 +10,9 @@ import (
 var debugOutput = false
 
 type decodeTestCase struct {
-	Name         string
-	UnencodedData  string
-	EncodedData  string
+	Name          string
+	UnencodedData string
+	EncodedData   string
 	ExpectedStack []encodings.Encoding
 }
 
@@ -20,36 +20,36 @@ var decodeTestCases = []*decodeTestCase{
 
 	/*
 		No Encodings
-	 */
+	*/
 	{
-		Name: "None[test,1]",
+		Name:          "None[test,1]",
 		UnencodedData: "test ✪", EncodedData: "test ✪",
 		ExpectedStack: []encodings.Encoding{encodings.None},
 	},
 
 	/*
 		Single URL Encoding
-	 */
+	*/
 	{
-		Name: "URL[test,✪]",
+		Name:          "URL[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test%20%E2%9C%AA",
 		ExpectedStack: []encodings.Encoding{encodings.URL},
 	},
 
 	/*
 		Double URL Encoding
-	 */
+	*/
 	{
-		Name: "URL,URL[test,✪]",
+		Name:          "URL,URL[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test%2520%25E2%259C%25AA",
 		ExpectedStack: []encodings.Encoding{encodings.URL, encodings.URL},
 	},
 
 	/*
 		URL Encoding four times
-	 */
+	*/
 	{
-		Name: "URL,URL,URL,URL[test,✪]",
+		Name:          "URL,URL,URL,URL[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test%25252520%252525E2%2525259C%252525AA",
 		ExpectedStack: []encodings.Encoding{encodings.URL, encodings.URL, encodings.URL, encodings.URL},
 	},
@@ -58,35 +58,34 @@ var decodeTestCases = []*decodeTestCase{
 		URL Encoding five times
 	*/
 	{
-		Name: "URL,URL,URL,URL,URL[test,✪]",
+		Name:          "URL,URL,URL,URL,URL[test,✪]",
 		UnencodedData: "test%20%E2%9C%AA", EncodedData: "test%2525252520%25252525E2%252525259C%25252525AA",
 		ExpectedStack: []encodings.Encoding{encodings.URL, encodings.URL, encodings.URL, encodings.URL},
 	},
 
 	/*
 		HTML Encoded
-	 */
+	*/
 	{
-		Name: "HTML[test,✪]",
+		Name:          "HTML[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test &#10026;",
 		ExpectedStack: []encodings.Encoding{encodings.HTML},
 	},
 	{
-		Name: "HTML,HTML[test,✪]",
+		Name:          "HTML,HTML[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test &amp;#10026;",
 		ExpectedStack: []encodings.Encoding{encodings.HTML, encodings.HTML},
 	},
 
 	/*
 		URL, HTML Encoded
-	 */
+	*/
 	{
-		Name: "URL,HTML[test,✪]",
+		Name:          "URL,HTML[test,✪]",
 		UnencodedData: "test ✪", EncodedData: "test%20%26%2310026%3B",
 		ExpectedStack: []encodings.Encoding{encodings.URL, encodings.HTML},
 	},
 }
-
 
 func TestBranchDecoder_Decode(t *testing.T) {
 
