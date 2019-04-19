@@ -2,6 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/jmizell/BranchDecoder.svg?color=00ff00)
 [![GoDoc](https://godoc.org/github.com/jmizell/BranchDecoder/decoder?status.svg)](https://godoc.org/github.com/jmizell/BranchDecoder/decoder)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jmizell/BranchDecoder)](https://goreportcard.com/report/github.com/jmizell/BranchDecoder)
 
 BranchDecoder is a recursive, broadly searching, string encoding detection, 
 and decoding library. It attempts to walk through every potential string 
